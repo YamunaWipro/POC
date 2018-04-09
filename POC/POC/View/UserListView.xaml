@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="POC.View.UserListView"
+              xmlns:design="clr-namespace:POC;assembly=POC"
+             BackgroundImage="bgblue.jpg"
+             Title="User List">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="FillAndExpand">
+            <ListView ItemsSource="{Binding Monkeys}"
+					ItemTapped="Handle_ItemTapped"
+                    HasUnevenRows="true"
+                    GroupShortNameBinding = "{Binding Key}"
+                    
+                    GroupDisplayBinding = "{Binding Key}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="5" RowSpacing="20" ColumnSpacing="10">
+                                <Image 
+										HeightRequest="100"
+										HorizontalOptions="StartAndExpand"
+										VerticalOptions="StartAndExpand"
+										Aspect="AspectFill"
+                                       WidthRequest="100"
+                                       Grid.RowSpan="2"
+                                       Source="{Binding Image}"/>
+                                <Label Grid.Column="1"
+                                       Text="{Binding Name}"
+									   VerticalOptions="StartAndExpand"
+                                       TextColor="White"
+                                       FontSize="Small"
+                                       FontAttributes="Bold"/>
+                                <Label Grid.Column="1"
+                                       Grid.Row="1"
+                                       VerticalOptions="StartAndExpand"
+                                       Text="{Binding Location}"
+                                       TextColor="White"
+                                       FontSize="Micro"
+                                       FontAttributes="Italic"
+                                       />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <ViewCell Height="0" >
+                            <Grid/>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.GroupHeaderTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

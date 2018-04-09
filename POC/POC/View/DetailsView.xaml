@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="POC.View.DetailsView"
+             xmlns:design="clr-namespace:POC;assembly=POC"
+       
+        BindingContext="{x:Static design:ViewModelLocator.DetailsViewModel}"
+        Title="List View">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="10">
+               
+                <Label Text="{Binding Monkey.Name}" FontAttributes="Bold"/>
+                <Label Text="{Binding Monkey.Location}" FontSize="Micro"/>
+                <Label Text="{Binding Monkey.Details}" FontSize="Large"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
