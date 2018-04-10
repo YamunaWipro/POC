@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 
 using Xamarin.Forms;
 
-namespace Authentication
+namespace POC
 {
     public class BaseViewModel : INotifyPropertyChanged
     {

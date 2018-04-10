@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="POC.View.UserDetailsSingleView"
+                BackgroundColor="#088da5"
+             >
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="{Binding SetName}"
+                FontSize = "42"
+                FontFamily = "Verdana"
+                FontAttributes="Bold"
+                TextColor ="White"
+                HorizontalOptions = "CenterAndExpand"></Label>
+            <Frame CornerRadius = "10"
+                IsClippedToBounds = "true"
+                MinimumHeightRequest = "200"
+                MinimumWidthRequest = "200"
+                HorizontalOptions = "CenterAndExpand"
+                   BackgroundColor="Black"
+                Padding = "0">
+                <Image Aspect = "AspectFill"
+                    HorizontalOptions ="CenterAndExpand"
+                    HeightRequest = "300"
+                    WidthRequest = "300"
+                       Source="{Binding SetImage}"></Image>
+            </Frame>
+            <Frame Padding = "10, 5"
+                HasShadow = "false"
+                BackgroundColor = "Transparent">
+                <Label FontSize = "20"
+                    FontAttributes="Italic"
+                    TextColor = "#ddd"
+                    Text = "{Binding SetDescription}"></Label>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

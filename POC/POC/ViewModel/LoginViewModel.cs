@@ -33,7 +33,7 @@ namespace POC.ViewModels
         #endregion
         public INavigation _navigation;
         public string pathName;
-        
+        private string _username, _password;
         public LoginViewModel()
         {
            
@@ -41,24 +41,34 @@ namespace POC.ViewModels
             dh = new DatabaseHelper();
            
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
-           
-
+            InputClearCommand = new Command(Validation);
+          
         }
-        private LoginModel loginModel = new LoginModel();
-
-        public LoginModel LoginModel
+        public string Username { get { return _username; }
+             set {
+                _username = value; OnPropertyChanged("Username");
+            } }
+        public string Password { get { return _password; }  set {
+                _password = value;
+                OnPropertyChanged("Password");
+               
+            } }
+        void Validation()
         {
-            get { return loginModel; }
-            set
-            {
-                loginModel = value;
-                OnPropertyChanged();
-            }
+            Username = string.Empty;
+            Password = string.Empty;
+           // loginModel.Username = string.Empty;
+          //  loginModel.Password = string.Empty;
+           OnPropertyChanged("Username");
+            OnPropertyChanged("Password");
+           // this.OnPropertyChanged("loginModel.Password");
         }
+
+       
         async Task ExecuteLoadItemsCommand()
         {
-            username = loginModel.Username;
-            password = loginModel.Password;
+            username =_username;
+            password = _password;
             //((m.usernameEntry.Text).Equals(string.Empty))
             //   await Application.Current.MainPage.DisplayAlert(MainPage.usernameEntry.Text, "Continue", "OK")
             if (username.Equals(string.Empty) || password.Equals(string.Empty))
@@ -91,7 +101,7 @@ namespace POC.ViewModels
 
         }
         public Command LoadItemsCommand { get ; set; }
-
+        public ICommand InputClearCommand { get; private set; }
 
     }
 }

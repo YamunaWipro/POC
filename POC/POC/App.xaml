@@ -5,6 +5,9 @@
 	<Application.Resources>
 
 		<!-- Application resource dictionary -->
+        <ResourceDictionary>
+            <x:String x:Key="MainpageImage">https://d1ic4altzx8ueg.cloudfront.net/finder-au/wp-uploads/2015/12/telstralogo1.png </x:String>
+        </ResourceDictionary>
 
-	</Application.Resources>
+    </Application.Resources>
 </Application>

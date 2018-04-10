@@ -4,8 +4,9 @@
              x:Class="POC.View.DetailsView"
              xmlns:design="clr-namespace:POC;assembly=POC"
        
-        BindingContext="{x:Static design:ViewModelLocator.DetailsViewModel}"
-        Title="List View">
+       
+        Title="List View"
+              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Padding="10">

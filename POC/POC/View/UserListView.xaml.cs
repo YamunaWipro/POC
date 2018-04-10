@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using POC;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -19,6 +19,6 @@ namespace POC.View
         }
 
         void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
-        => App.Current.MainPage.Navigation.PushAsync(new UserDetailSingleView((DetailsModel)e.Item));
+        => App.Current.MainPage.Navigation.PushAsync(new UserDetailsSingleView((DetailsModel)e.Item));
     }
 }
