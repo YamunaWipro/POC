@@ -11,7 +11,8 @@
                 FontFamily = "Verdana"
                 FontAttributes="Bold"
                 TextColor ="White"
-                HorizontalOptions = "CenterAndExpand"></Label>
+                HorizontalOptions = "CenterAndExpand"
+                   ></Label>
             <Frame CornerRadius = "10"
                 IsClippedToBounds = "true"
                 MinimumHeightRequest = "200"

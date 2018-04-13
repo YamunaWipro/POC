@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using POC;
 using Xamarin.Forms;
+using Xamarin.Forms.Maps;
 
 namespace POC.View
 {
@@ -27,7 +28,9 @@ namespace POC.View
         public UserDetailSingleView(DetailsModel monkey)
         {
             detailsModel = monkey;
+           
         }
+       
         public string SetName
         {
             get
@@ -65,6 +68,7 @@ namespace POC.View
                 OnPropertyChanged("SetDescription");
             }
         }
+        
         /* AbsoluteLayout peakLayout = new AbsoluteLayout { HeightRequest = 250, BackgroundColor =  Color.FromRgb(8, 141, 165) };
 
          //Set Detail View Title

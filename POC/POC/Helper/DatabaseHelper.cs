@@ -11,7 +11,7 @@ namespace POC
 {
     public class DatabaseHelper
     {
-       // string path;
+      // string path;
         SQLiteConnection database;
         static object locker = new object();
         public SQLite.SQLiteConnection GetConnection()

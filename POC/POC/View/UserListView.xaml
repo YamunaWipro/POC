@@ -32,15 +32,23 @@
 									   VerticalOptions="StartAndExpand"
                                        TextColor="White"
                                        FontSize="Small"
-                                       FontAttributes="Bold"/>
+                                       FontAttributes="Bold"
+                                       />
+
                                 <Label Grid.Column="1"
                                        Grid.Row="1"
                                        VerticalOptions="StartAndExpand"
                                        Text="{Binding Location}"
                                        TextColor="White"
-                                       FontSize="Micro"
+                                       FontSize="Medium"
                                        FontAttributes="Italic"
-                                       />
+                                      >
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                             Tapped="Cell_Tapped"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
+
                             </Grid>
                         </ViewCell>
                     </DataTemplate>

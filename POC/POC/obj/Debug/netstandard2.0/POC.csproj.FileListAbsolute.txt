@@ -1,0 +1,15 @@
+E:\POC-master\POC-master\POC\POC\bin\Debug\netstandard2.0\POC.deps.json
+E:\POC-master\POC-master\POC\POC\bin\Debug\netstandard2.0\POC.dll
+E:\POC-master\POC-master\POC\POC\bin\Debug\netstandard2.0\POC.pdb
+E:\POC-master\POC-master\POC\POC\obj\Debug\netstandard2.0\POC.csproj.CoreCompileInputs.cache
+E:\POC-master\POC-master\POC\POC\obj\Debug\netstandard2.0\POC.App.xaml.g.cs
+E:\POC-master\POC-master\POC\POC\obj\Debug\netstandard2.0\POC.View.DetailsView.xaml.g.cs
+E:\POC-master\POC-master\POC\POC\obj\Debug\netstandard2.0\POC.View.MainPage.xaml.g.cs
+E:\POC-master\POC-master\POC\POC\obj\Debug\netstandard2.0\POC.View.UserDetailsSingleView.xaml.g.cs
+E:\POC-master\POC-master\POC\POC\obj\Debug\netstandard2.0\POC.View.UserListView.xaml.g.cs
+E:\POC-master\POC-master\POC\POC\obj\Debug\netstandard2.0\POC.AssemblyInfoInputs.cache
+E:\POC-master\POC-master\POC\POC\obj\Debug\netstandard2.0\POC.AssemblyInfo.cs
+E:\POC-master\POC-master\POC\POC\obj\Debug\netstandard2.0\POC.dll
+E:\POC-master\POC-master\POC\POC\obj\Debug\netstandard2.0\POC.pdb
+E:\POC-master\POC-master\POC\POC\obj\Debug\netstandard2.0\POC.csprojResolveAssemblyReference.cache
+E:\POC-master\POC-master\POC\POC\obj\Debug\netstandard2.0\POC.View.View1.xaml.g.cs

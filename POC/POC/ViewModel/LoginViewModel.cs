@@ -4,21 +4,20 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Xamarin.Forms;
 using System;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Threading.Tasks;
+using Microsoft.Identity.Client;
+using System.Net.Http;
+using System.Linq;
 using POC.View;
-using POC.Model;
-using System.IO;
+using POC;
 
-using POC.ViewModels;
 namespace POC.ViewModels
 {
     public class LoginViewModel : INotifyPropertyChanged
     {
         DatabaseHelper dh;
-       
-       public String name;
+        
+        public String name;
         public string username, password;
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
@@ -34,6 +33,7 @@ namespace POC.ViewModels
         public INavigation _navigation;
         public string pathName;
         private string _username, _password;
+        AuthenticationResult ar;
         public LoginViewModel()
         {
            
@@ -63,43 +63,119 @@ namespace POC.ViewModels
             OnPropertyChanged("Password");
            // this.OnPropertyChanged("loginModel.Password");
         }
-
-       
-        async Task ExecuteLoadItemsCommand()
+        public  async Task RefreshUserDataAsync(string token)
         {
-            username =_username;
-            password = _password;
-            //((m.usernameEntry.Text).Equals(string.Empty))
-            //   await Application.Current.MainPage.DisplayAlert(MainPage.usernameEntry.Text, "Continue", "OK")
-            if (username.Equals(string.Empty) || password.Equals(string.Empty))
+            //get data from API
+            HttpClient client = new HttpClient();
+            HttpRequestMessage message = new HttpRequestMessage(HttpMethod.Get, "https://graph.microsoft.com/v1.0/me");
+            message.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", token);
+            HttpResponseMessage response = await client.SendAsync(message);
+            string responseString = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
             {
+                await _navigation.PushAsync(new NavigationPage(new UserListView()));
+                /*  JObject user = JObject.Parse(responseString);
 
-                await Application.Current.MainPage.DisplayAlert("Username or Password is empty", "Continue", "OK");
+                  slUser.IsVisible = true;
+                  lblDisplayName.Text = user["displayName"].ToString();
+                  lblGivenName.Text = user["givenName"].ToString();
+                  lblId.Text = user["id"].ToString();
+                  lblSurname.Text = user["surname"].ToString();
+                  lblUserPrincipalName.Text = user["userPrincipalName"].ToString();
+
+                  // just in case
+                  btnSignInSignOut.Text = "Sign out";*/
+
+
             }
             else
-
             {
+                await Application.Current.MainPage.DisplayAlert("Something went wrong with the API call", responseString, "Dismiss");
+            }
+        }
 
 
-                string pass = dh.GetPassword(username);
-                if (pass.Equals(""))
+        async Task ExecuteLoadItemsCommand()
+        {
+          /*  try
+            {
+                ar = await App.PCA.AcquireTokenSilentAsync(App.Scopes, App.PCA.Users.FirstOrDefault());
+                await RefreshUserDataAsync(ar.AccessToken);
+
+            }
+            catch (MsalUiRequiredException ex)
+            {
+                // A MsalUiRequiredException happened on AcquireTokenSilentAsync. 
+                // This indicates you need to call AcquireTokenAsync to acquire a token
+                System.Diagnostics.Debug.WriteLine($"MsalUiRequiredException: {ex.Message}");
+
+                try
                 {
-                    await Application.Current.MainPage.DisplayAlert("Username is incorrect", "Continue", "OK");
+                    ar = await App.PCA.AcquireTokenAsync(App.Scopes,App.UiParent);
                 }
-                else
+                catch (MsalException msalex)
                 {
-                    if (pass.Equals(password))
-                        //  await Application.Current.MainPage.DisplayAlert(n, "Continue", "OK");
-                        // else
-                        //  await Application.Current.MainPage.DisplayAlert("No", "Continue", "OK");
-                        await _navigation.PushAsync(new NavigationPage(new UserListView()));
-                    else
-                        await Application.Current.MainPage.DisplayAlert("Password is incorrect", "Continue", "OK");
+                    // ResultText.Text = $"Error Acquiring Token:{System.Environment.NewLine}{msalex}";
                 }
             }
-            //await Application.Current.MainPage.DisplayAlert("Negotiation", "Saved correctly", "OK");
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert(ex.Message, "Continue", "OK");
+                // doesn't matter, we go in interactive more
+
+            }
+
+
+
+
+            // let's see if we have a user in our belly already
+            /* try
+              {
+                  AuthenticationResult ar = await App.PCA.AcquireTokenAsync(App.Scopes, App.UiParent);
+                 await RefreshUserDataAsync(ar.AccessToken);
+
+              }
+              catch (Exception ex)
+              {
+                  await Application.Current.MainPage.DisplayAlert(ex.Message, "Continue", "OK");
+              } */
+            //--------------------------------------------------------------------------------------
+               username =_username;
+               password = _password;
+               //((m.usernameEntry.Text).Equals(string.Empty))
+               //   await Application.Current.MainPage.DisplayAlert(MainPage.usernameEntry.Text, "Continue", "OK")
+               if (username.Equals(string.Empty) || password.Equals(string.Empty))
+               {
+
+                   await Application.Current.MainPage.DisplayAlert("Username or Password is empty", "Continue", "OK");
+               }
+               else
+
+               {
+
+
+                   string pass = dh.GetPassword(username);
+                   if (pass.Equals(""))
+                   {
+                       await Application.Current.MainPage.DisplayAlert("Username is incorrect", "Continue", "OK");
+                   }
+                   else
+                   {
+                       if (pass.Equals(password))
+                           //  await Application.Current.MainPage.DisplayAlert(n, "Continue", "OK");
+                           // else
+                           //  await Application.Current.MainPage.DisplayAlert("No", "Continue", "OK");
+                           await _navigation.PushAsync(new NavigationPage(new UserListView()));
+                       else
+                           await Application.Current.MainPage.DisplayAlert("Password is incorrect", "Continue", "OK");
+                   }
+               }
+               //await Application.Current.MainPage.DisplayAlert("Negotiation", "Saved correctly", "OK");*/
 
         }
+
+
+       
         public Command LoadItemsCommand { get ; set; }
         public ICommand InputClearCommand { get; private set; }
 
